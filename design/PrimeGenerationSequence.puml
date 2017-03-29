@@ -1,0 +1,33 @@
+@startuml
+Actor User
+Participant TableViewComponent
+Participant TableViewValidator
+Participant PrimeGeneratorService
+Participant PrimeUtils
+
+User -> TableViewComponent: Click 'Populate'
+TableViewComponent -> TableViewComponent: populateTable()
+TableViewComponent -> TableViewValidator: validateInput() : String
+alt Validation fails
+TableViewComponent -> TableViewComponent: setValidationFailedMessage(validateInputResult)
+else Validation passes
+TableViewComponent -> PrimeGeneratorService: generatePrimeNumbers(primeCount) : primeNumbers
+    PrimeGeneratorService -> PrimeUtils: approximatePrimeNumber(primeCount) : Number
+    note right: Using a sieve of Eratosthenes for this, therefore need to 'approximate' the number \nfor a specific count so they can be marked as a composite.\n\nThis number is passed to the setRecurringValue function later.
+
+    loop loop index by 1, while primesArray.length !== primeCount
+        alt index has not been marked as a composite
+        PrimeGeneratorService -> PrimeUtils: isNumberPrime(loopIndex) : Boolean
+
+        alt index is prime
+        PrimeGeneratorService -> PrimeGeneratorService: primesArray.push()
+        end alt
+
+        PrimeGeneratorService -> ArrayUtils: setRecurringValue(arrayOfAllNumbers, startIndex, endIndex, increment, value)
+        note right: This will mark any multiple of the value as a composite,\nto save processing later.
+        end alt
+    end loop
+TableViewComponent -> TableViewComponent: <bind to view>
+end alt
+
+@enduml
