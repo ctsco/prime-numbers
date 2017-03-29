@@ -64,7 +64,6 @@ describe('arrayutils_test.js', function () {
 
                     ArrayUtils.setRecurringValue(array, START_INDEX, END_INDEX, 1, VALUE);
 
-                    expect(array.length).toBe(1);
                     expect(array[START_INDEX]).toBe(VALUE);
                 });
 
@@ -73,8 +72,6 @@ describe('arrayutils_test.js', function () {
                     var END_INDEX = 3;
 
                     ArrayUtils.setRecurringValue(array, START_INDEX, END_INDEX, 1, VALUE);
-
-                    expect(array.length).toBe(4);
 
                     expect(array[0]).toBe(VALUE);
                     expect(array[1]).toBe(VALUE);
@@ -87,8 +84,6 @@ describe('arrayutils_test.js', function () {
                     var END_INDEX = 1001;
 
                     ArrayUtils.setRecurringValue(array, START_INDEX, END_INDEX, 1, VALUE);
-
-                    expect(array.length).toBe(2);
 
                     expect(array[1000]).toBe(VALUE);
                     expect(array[1001]).toBe(VALUE);
@@ -105,37 +100,33 @@ describe('arrayutils_test.js', function () {
 
                 it('when it falls exactly in the start and end range', function () {
                     var START_INDEX = 0;
-                    var END_INDEX = 5;
-                    var INCREMENT = 2;
-
-                    ArrayUtils.setRecurringValue(array, START_INDEX, END_INDEX, INCREMENT, VALUE);
-
-                    expect(array.length).toBe(3);
-
-                    expect(array[0]).toBe(VALUE);
-                    expect(array[2]).toBe(VALUE);
-                    expect(array[4]).toBe(VALUE);
-
-                    expect(array[1]).toBe(undefined);
-                    expect(array[3]).toBe(undefined);
-                    expect(array[5]).toBe(undefined);
-                });
-
-                it('when it falls outside of the start and end range', function () {
-                    var START_INDEX = 0;
                     var END_INDEX = 4;
                     var INCREMENT = 2;
 
                     ArrayUtils.setRecurringValue(array, START_INDEX, END_INDEX, INCREMENT, VALUE);
 
-                    expect(array.length).toBe(2);
+                    expect(array[0]).toBe(VALUE);
+                    expect(array[1]).toBe(undefined);
+                    expect(array[2]).toBe(VALUE);
+                    expect(array[3]).toBe(undefined);
+                    expect(array[4]).toBe(VALUE);
+                    expect(array[5]).toBe(undefined);
+                });
+
+                it('when it falls outside of the start and end range', function () {
+                    var START_INDEX = 0;
+                    var END_INDEX = 5;
+                    var INCREMENT = 2;
+
+                    ArrayUtils.setRecurringValue(array, START_INDEX, END_INDEX, INCREMENT, VALUE);
 
                     expect(array[0]).toBe(VALUE);
-                    expect(array[2]).toBe(VALUE);
-
                     expect(array[1]).toBe(undefined);
+                    expect(array[2]).toBe(VALUE);
                     expect(array[3]).toBe(undefined);
-                    expect(array[4]).toBe(undefined);
+                    expect(array[4]).toBe(VALUE);
+                    expect(array[5]).toBe(undefined);
+                    expect(array[6]).toBe(undefined);
                 });
 
                 it('when it is greater than the difference between start and end indexes', function () {
@@ -144,8 +135,6 @@ describe('arrayutils_test.js', function () {
                     var INCREMENT = 6;
 
                     ArrayUtils.setRecurringValue(array, START_INDEX, END_INDEX, INCREMENT, VALUE);
-
-                    expect(array.length).toBe(1);
 
                     expect(array[0]).toBe(VALUE);
                 });
@@ -185,7 +174,7 @@ describe('arrayutils_test.js', function () {
                     });
 
                     it('and changing to the same type', function () {
-                        ArrayUtils.setRecurringValue(array, 0, 0, 1, "uddated");
+                        ArrayUtils.setRecurringValue(array, 0, 0, 1, "updated");
                         expect(array[0]).toBe("updated");
                     });
 

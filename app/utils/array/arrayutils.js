@@ -7,6 +7,13 @@ angular.module('primetables.utils.array', [
 
             validateParameters();
 
+            var currentPosition = startIndex;
+
+            while(currentPosition <= endIndex) {
+                array[currentPosition] = value;
+                currentPosition += increment;
+            }
+
             function validateParameters() {
                 var CANNOT_BE_UNDEFINED = " cannot be undefined";
 
@@ -18,6 +25,8 @@ angular.module('primetables.utils.array', [
                     throw "endIndex" + CANNOT_BE_UNDEFINED;
                 } else if(increment === undefined) {
                     throw "increment" + CANNOT_BE_UNDEFINED;
+                } else if(endIndex < startIndex) {
+                    throw "endIndex cannot be before startIndex";
                 }
             }
         };
