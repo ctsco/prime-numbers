@@ -43,7 +43,7 @@ describe('primeutils_test.js', function () {
                 var compositesBelow100 = [4, 6, 8, 9, 10, 12, 14, 15, 18, 20];
 
                 compositesBelow100.forEach(function(composite) {
-                    expect(PrimeUtils.isValuePrime(composite)).toBe(true);
+                    expect(PrimeUtils.isValuePrime(composite)).toBe(false);
                 })
             });
 
@@ -51,7 +51,7 @@ describe('primeutils_test.js', function () {
                 var compositesBelow1000 = [938, 939, 940, 942, 943, 944, 945, 946, 948, 949];
 
                 compositesBelow1000.forEach(function(composite) {
-                    expect(PrimeUtils.isValuePrime(composite)).toBe(true);
+                    expect(PrimeUtils.isValuePrime(composite)).toBe(false);
                 })
             });
 
@@ -59,7 +59,7 @@ describe('primeutils_test.js', function () {
                 var compositesBelow10000 = [9886, 9888, 9889, 9890, 9900, 9902, 9903, 9904, 9905, 9906];
 
                 compositesBelow10000.forEach(function(composite) {
-                    expect(PrimeUtils.isValuePrime(composite)).toBe(true);
+                    expect(PrimeUtils.isValuePrime(composite)).toBe(false);
                 })
             });
         });
