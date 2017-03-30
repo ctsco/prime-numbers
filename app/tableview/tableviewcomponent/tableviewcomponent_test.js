@@ -38,6 +38,16 @@ describe("tableviewcomponent_test.js", function () {
             parentScope.$digest();
         });
 
+        describe("contain an input field", function() {
+
+            var INPUT_SELECTOR = ".UT-prime-count-input";
+
+            it('should be present', function() {
+                expect(element.find(INPUT_SELECTOR).length).toBe(1);
+            });
+
+        });
+
         describe("contain a button to populate the table", function() {
 
             var BUTTON_SELECTOR = ".UT-populate-table";
@@ -47,12 +57,11 @@ describe("tableviewcomponent_test.js", function () {
             });
 
             it('which should call the populateTable function when clicked', function() {
-                spyOn(component, "populateTable");
+                var elementControllerInstance = element.controller('tableView');
+                spyOn(elementControllerInstance, "populateTable");
 
-                var populateTableButton = element.find(BUTTON_SELECTOR)[0];
-                populateTableButton.triggerHandler("click");
-
-                expect(component.populateTable).toHaveBeenCalled();
+                element.find(BUTTON_SELECTOR).click();
+                expect(elementControllerInstance.populateTable).toHaveBeenCalled();
             });
 
         });
