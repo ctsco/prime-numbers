@@ -35,6 +35,11 @@ describe('primegenerator_test.js', function () {
             mockPrimeUtils.approximateNthPrimeNumber
                 = jasmine.createSpy("approximateNthPrimeNumber").and.returnValue(1);
 
+            mockPrimeUtils.isNumberPrime
+                = jasmine.createSpy("isNumberPrime").and.returnValue(true);
+
+            mockArrayUtils.setRecurringValue = jasmine.createSpy("setRecurringValue");
+
             var COUNT = 10;
             PrimeGenerator.generatePrimeNumbers(COUNT);
 
