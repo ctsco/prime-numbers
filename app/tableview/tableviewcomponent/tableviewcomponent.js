@@ -2,7 +2,8 @@
 
 angular.module('primetables.tableview.component',
     [
-        'primetables.utils.primes.generator'
+        'primetables.utils.primes.generator',
+        'primetables.filters.multiplication'
     ]
 )
 

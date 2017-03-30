@@ -35,8 +35,8 @@ describe('primegenerator_test.js', function () {
             mockPrimeUtils.approximateNthPrimeNumber
                 = jasmine.createSpy("approximateNthPrimeNumber").and.returnValue(1);
 
-            mockPrimeUtils.isNumberPrime
-                = jasmine.createSpy("isNumberPrime").and.returnValue(true);
+            mockPrimeUtils.isValuePrime
+                = jasmine.createSpy("isValuePrime").and.returnValue(true);
 
             mockArrayUtils.setRecurringValue = jasmine.createSpy("setRecurringValue");
 
@@ -65,18 +65,18 @@ describe('primegenerator_test.js', function () {
                 var result;
 
                 beforeEach(function() {
-                    mockPrimeUtils.isNumberPrime
-                        = jasmine.createSpy("isNumberPrime").and.returnValue(true);
+                    mockPrimeUtils.isValuePrime
+                        = jasmine.createSpy("isValuePrime").and.returnValue(true);
 
                     result = PrimeGenerator.generatePrimeNumbers(COUNT);
                 });
 
                 it('by confirming whether number is a prime', function() {
-                    expect(mockPrimeUtils.isNumberPrime.calls.count()).toBe(COUNT);
+                    expect(mockPrimeUtils.isValuePrime.calls.count()).toBe(COUNT);
 
-                    expect(mockPrimeUtils.isNumberPrime).toHaveBeenCalledWith(2);
-                    expect(mockPrimeUtils.isNumberPrime).toHaveBeenCalledWith(3);
-                    expect(mockPrimeUtils.isNumberPrime).toHaveBeenCalledWith(4);
+                    expect(mockPrimeUtils.isValuePrime).toHaveBeenCalledWith(2);
+                    expect(mockPrimeUtils.isValuePrime).toHaveBeenCalledWith(3);
+                    expect(mockPrimeUtils.isValuePrime).toHaveBeenCalledWith(4);
                 });
 
                 it('to the result, starting with 2', function() {
@@ -115,8 +115,8 @@ describe('primegenerator_test.js', function () {
                 var result;
 
                 beforeEach(function() {
-                    mockPrimeUtils.isNumberPrime
-                        = jasmine.createSpy("isNumberPrime").and.returnValues(false, false, true, true, true);
+                    mockPrimeUtils.isValuePrime
+                        = jasmine.createSpy("isValuePrime").and.returnValues(false, false, true, true, true);
 
                     result = PrimeGenerator.generatePrimeNumbers(COUNT);
                 });

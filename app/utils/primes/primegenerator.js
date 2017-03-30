@@ -23,7 +23,7 @@ angular.module('primetables.utils.primes.generator', [
 
                 if(numbers[numberUnderTest] === undefined) {
 
-                    if(PrimeUtils.isNumberPrime(numberUnderTest)) {
+                    if(PrimeUtils.isValuePrime(numberUnderTest)) {
                         primeCount++;
                         primes.push(numberUnderTest);
 
