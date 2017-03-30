@@ -223,6 +223,10 @@ describe("tableviewcomponent_test.js", function () {
                 expect(component.primes).toBe(MOCK_PRIME_NUMBERS);
             });
 
+            it('and assign the last prime number to controller.lastPrime', function() {
+                expect(component.lastPrime).toBe(300);
+            });
+
         });
 
     });

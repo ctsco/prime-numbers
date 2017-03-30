@@ -8,6 +8,16 @@
         <button class="UT-populate-table" ng-click="$ctrl.populateTable()">Make it happen!</button>
     </div>
 
+    <div class="debug-info" ng-show="$ctrl.primes">
+        <div class="time-taken">
+            Time taken to generate: {{$ctrl.timeTaken}}ms
+        </div>
+
+        <div class="last-prime">
+            Last Prime: {{$ctrl.lastPrime}}
+        </div>
+    </div>
+
     <table class="prime-table">
         <tr>
             <th class="UT-prime-header"></th>
