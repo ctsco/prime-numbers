@@ -20,7 +20,7 @@ describe("multiplicationfilter_test.js", function () {
                 slice: jasmine.createSpy("slice").and.returnValue(MOCK_RETURN)
             };
 
-            result = filter(arrayMock), SLICE_INDEX;
+            result = filter(arrayMock, SLICE_INDEX);
         });
 
         it("slice the array, by startIndex", function() {
