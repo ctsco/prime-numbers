@@ -197,6 +197,33 @@ describe("tableviewcomponent_test.js", function () {
 
     });
 
+    describe("$onInit", function() {
+
+        beforeEach(function() {
+            component.$onInit();
+        });
+
+        it('should create an initial pages object', function() {
+            expect(component.pages).toEqual([0]);
+        });
+
+        it('should set the initial vertical page to 0', function() {
+            expect(component.verticalPage).toBe(0);
+        });
+
+        it('should set the initial horizontal page to 0', function() {
+            expect(component.verticalPage).toBe(0);
+        })
+
+        it('should set the pageSize to 10', function() {
+            expect(component.pageSize).toBe(10);
+        });
+
+        it('should enablePaging by default', function() {
+            expect(component.enablePaging).toBe(true);
+        });
+    });
+
     describe("populateTable()", function() {
 
         var mockPrimeGenerator = {};
@@ -233,9 +260,17 @@ describe("tableviewcomponent_test.js", function () {
                 expect(component.lastPrime).toBe(122);
             });
 
-            it('and calculate the pageSize', function() {
+            it('and calculate the pageCount', function() {
                 expect(component.pageCount).toBe(13);
             });
+
+            it('and populate a page array containing a number for each page', function() {
+                expect(component.pages.length).toBe(13);
+
+                for(var x=0; x<component.pages.length; x++) {
+                    expect(component.pages[x]).toBe(x);
+                }
+            })
 
         });
 
