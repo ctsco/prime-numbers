@@ -12,6 +12,7 @@ module.exports = function (config) {
             '**/app.js',
             'tableview/**/*.js',
             'utils/**/*.js',
+            'filters/**/*.js',
             '**/*.html'
         ],
 
