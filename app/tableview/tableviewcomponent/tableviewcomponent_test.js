@@ -84,7 +84,7 @@ describe("tableviewcomponent_test.js", function () {
             mockPrimeGenerator.generatePrimeNumbers
                 = jasmine.createSpy('generatePrimeNumbers').and.returnValue(MOCK_PRIME_NUMBERS);
 
-            initialiseComponent({PrimeGenerator: 'mockPrimeGenerator'});
+            initialiseComponent({PrimeGenerator: mockPrimeGenerator});
 
             component.enteredPrimeCount = MOCK_PRIME_COUNT;
             component.populateTable();

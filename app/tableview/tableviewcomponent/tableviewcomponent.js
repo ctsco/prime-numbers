@@ -2,6 +2,7 @@
 
 angular.module('primetables.tableview.component',
     [
+        'primetables.utils.primes.generator'
     ]
 )
 
@@ -10,12 +11,12 @@ angular.module('primetables.tableview.component',
         controller: TableViewComponentController
     });
 
-function TableViewComponentController() {
+function TableViewComponentController(PrimeGenerator) {
 
     var ctrl = this;
 
     ctrl.populateTable = function() {
-
+        ctrl.primes = PrimeGenerator.generatePrimeNumbers(ctrl.enteredPrimeCount);
     };
 
 }
