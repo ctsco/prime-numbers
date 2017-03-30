@@ -227,6 +227,10 @@ describe("tableviewcomponent_test.js", function () {
                 expect(component.lastPrime).toBe(300);
             });
 
+            it('and calculate the pageSize', function() {
+                expect(component.pageCount).toBe(13);
+            });
+
         });
 
     });
