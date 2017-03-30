@@ -8,8 +8,10 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'tableview*/**/*.js',
-      'utils*/**/*.js'
+      '**/app.js',
+      'tableview/**/*.js',
+      'utils/**/*.js',
+      '**/*.html'
     ],
 
     autoWatch: true,
@@ -23,12 +25,22 @@ module.exports = function(config) {
       'karma-firefox-launcher',
       'karma-phantomjs-launcher',
       'karma-jasmine',
-      'karma-junit-reporter'
+      'karma-junit-reporter',
+      'karma-ng-html2js-preprocessor'
     ],
 
     junitReporter: {
       outputFile: 'test_out/unit.xml',
       suite: 'unit'
+    },
+
+    preprocessors: {
+      '**/*.html': ['ng-html2js']
+    },
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: '',
+      moduleName: 'templates'
     }
 
   });

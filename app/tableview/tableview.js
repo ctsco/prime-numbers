@@ -2,7 +2,8 @@
 
 angular.module('primetables.tableview',
     [
-        'ngRoute'
+        'ngRoute',
+        'primetables.tableview.component'
     ]
 )
 
