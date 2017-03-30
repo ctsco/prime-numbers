@@ -8,8 +8,9 @@
             <th class="UT-prime-header" ng-repeat="prime in $ctrl.primes">{{::prime}}</th>
         </tr>
 
-        <tr class="UT-prime-row" ng-repeat="prime in $ctrl.primes">
-            <td>{{::prime}}</td>
+        <tr class="UT-prime-row" ng-repeat="row in $ctrl.primes">
+            <td>{{::row}}</td>
+            <td ng-repeat="column in $ctrl.primes">{{row | multiplication : column}}</td>
         </tr>
     </table>
 

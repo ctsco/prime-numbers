@@ -2,9 +2,24 @@ describe("tableviewcomponent_test.js", function () {
 
     var component, $componentController, $rootScope, $compile;
 
+    var multiplicationFilterSpy;
+
     beforeEach(function() {
         module('templates');
-        module('primetables.tableview.component');
+        module('primetables.tableview.component', function($provide) {
+            multiplicationFilterSpy = jasmine.createSpy('multiplicationFilter');
+            multiplicationFilterSpy.and.callFake(function(param1, param2) {
+                return param1 + "_" + param2;
+            });
+
+            var mockFilter = function (filterName) {
+                if (filterName === "multiplication") {
+                    return multiplicationFilterSpy;
+                }
+            };
+
+            $provide.value('$filter', mockFilter);
+        });
     });
 
     beforeEach(inject(function (_$rootScope_, _$compile_,  _$componentController_) {
@@ -96,17 +111,87 @@ describe("tableviewcomponent_test.js", function () {
 
             describe("with a row for each prime", function() {
                 var ROW_SELECTOR = ".UT-prime-row";
-                var ROW_CELL_SELECTOR = ROW_SELECTOR + " td";
+                var ROW_CELL_SELECTOR = "td";
 
                 it('should be one for each prime', function() {
                     expect(element.find(ROW_SELECTOR).length).toBe(3);
                 });
 
-                it('and the first column displays the prime number', function() {
-                    expect(element.find(ROW_CELL_SELECTOR).get(0).innerText).toBe("2");
-                    expect(element.find(ROW_CELL_SELECTOR).get(1).innerText).toBe("3");
-                    expect(element.find(ROW_CELL_SELECTOR).get(2).innerText).toBe("5");
+                describe('and the first column displays the prime number', function() {
+                    it('for the first row', function() {
+                        expect(getRow(0).find(ROW_CELL_SELECTOR).get(0).innerText).toBe("2");
+                    });
+
+                    it('for the second row', function() {
+                        expect(getRow(1).find(ROW_CELL_SELECTOR).get(0).innerText).toBe("3");
+                    });
+
+                    it('for the third row', function() {
+                        expect(getRow(2).find(ROW_CELL_SELECTOR).get(0).innerText).toBe("5");
+                    });
                 });
+
+                describe("each cell should apply the multiplication filter", function() {
+                    // innerText is stubbed by the multiplicationFilterSpy defined at the top
+                    // of this file.
+
+                    describe("e.g. row 1 should multiply", function() {
+                        it('2*2', function() {
+                            expect(multiplicationFilterSpy).toHaveBeenCalledWith(2, 2);
+                            expect(getRow(0).find(ROW_CELL_SELECTOR).get(1).innerText).toBe("2_2");
+                        });
+
+                        it('2*3', function() {
+                            expect(multiplicationFilterSpy).toHaveBeenCalledWith(2, 3);
+                            expect(getRow(0).find(ROW_CELL_SELECTOR).get(2).innerText).toBe("2_3");
+                        });
+
+                        it('2*5', function() {
+                            expect(multiplicationFilterSpy).toHaveBeenCalledWith(2, 5);
+                            expect(getRow(0).find(ROW_CELL_SELECTOR).get(3).innerText).toBe("2_5");
+                        });
+                    });
+
+                    describe("e.g. row 2 should multiply", function() {
+                        it('3*2', function() {
+                            expect(multiplicationFilterSpy).toHaveBeenCalledWith(3, 2);
+                            expect(getRow(1).find(ROW_CELL_SELECTOR).get(1).innerText).toBe("3_2");
+                        });
+
+                        it('3*3', function() {
+                            expect(multiplicationFilterSpy).toHaveBeenCalledWith(3, 3);
+                            expect(getRow(1).find(ROW_CELL_SELECTOR).get(2).innerText).toBe("3_3");
+                        });
+
+                        it('3*5', function() {
+                            expect(multiplicationFilterSpy).toHaveBeenCalledWith(3, 5);
+                            expect(getRow(1).find(ROW_CELL_SELECTOR).get(3).innerText).toBe("3_5");
+                        });
+                    });
+
+                    describe("e.g. row 3 should multiply", function() {
+                        it('5*2', function() {
+                            expect(multiplicationFilterSpy).toHaveBeenCalledWith(5, 2);
+                            expect(getRow(2).find(ROW_CELL_SELECTOR).get(1).innerText).toBe("5_2");
+                        });
+
+                        it('5*3', function() {
+                            expect(multiplicationFilterSpy).toHaveBeenCalledWith(5, 3);
+                            expect(getRow(2).find(ROW_CELL_SELECTOR).get(2).innerText).toBe("5_3");
+                        });
+
+                        it('5*5', function() {
+                            expect(multiplicationFilterSpy).toHaveBeenCalledWith(5, 5);
+                            expect(getRow(2).find(ROW_CELL_SELECTOR).get(3).innerText).toBe("5_5");
+                        });
+                    });
+
+                });
+
+                function getRow(rowIndex) {
+                    var row = element.find(ROW_SELECTOR).get(rowIndex);
+                    return angular.element(row);
+                }
             });
         });
 
