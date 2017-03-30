@@ -96,7 +96,7 @@ describe("tableviewcomponent_test.js", function () {
                 expect(mockPrimeGenerator.generatePrimeNumbers).toHaveBeenCalledWith(MOCK_PRIME_COUNT);
             });
 
-            it('and assign the response to controler.primes', function() {
+            it('and assign the response to controller.primes', function() {
                 expect(component.primes).toBe(MOCK_PRIME_NUMBERS);
             });
 
