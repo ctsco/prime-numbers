@@ -201,11 +201,17 @@ describe("tableviewcomponent_test.js", function () {
 
         var mockPrimeGenerator = {};
         var MOCK_PRIME_COUNT = 123;
-        var MOCK_PRIME_NUMBERS = [100, 200, 300];
+        var mockPrimeNumbers = [];
 
         beforeEach(function() {
+            mockPrimeNumbers = [];
+
+            for(var index = 0; index<123; index++) {
+                mockPrimeNumbers.push(index);
+            };
+
             mockPrimeGenerator.generatePrimeNumbers
-                = jasmine.createSpy('generatePrimeNumbers').and.returnValue(MOCK_PRIME_NUMBERS);
+                = jasmine.createSpy('generatePrimeNumbers').and.returnValue(mockPrimeNumbers);
 
             initialiseComponent({PrimeGenerator: mockPrimeGenerator});
 
@@ -220,11 +226,11 @@ describe("tableviewcomponent_test.js", function () {
             });
 
             it('and assign the response to controller.primes', function() {
-                expect(component.primes).toBe(MOCK_PRIME_NUMBERS);
+                expect(component.primes).toBe(mockPrimeNumbers);
             });
 
             it('and assign the last prime number to controller.lastPrime', function() {
-                expect(component.lastPrime).toBe(300);
+                expect(component.lastPrime).toBe(122);
             });
 
             it('and calculate the pageSize', function() {
