@@ -10,5 +10,6 @@ angular.module('primetables.utils.primes.generator', [
                 return [];
             }
 
+            var approximateHighestPrime = PrimeUtils.approximateNthPrimeNumber(count);
         };
     });
