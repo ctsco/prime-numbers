@@ -33,3 +33,13 @@ Then, from an additional command prompt, issue the following command:-
     npm run protractor
 
 This will then launch a Chrome browser, and execute the end-to-end UI based tests.  Results are reported within the original command prompt.
+
+# What I'm pleased with
+
+# What I'd do If I had more time...
+**Improve the performance of the PrimeUtils.isValuePrime algorithm.**
+This is a basic, first pass at working out a prime.  I'd imagine there are improvements to be made.
+
+**Improve the accuracy of the PrimeUtils.approximateNthPrimeNumber algorithm.**
+This is designed to aid the sieve so it knows how far to 'sieve out' data.  Currently, this is quite wasteful as the accurecy isn't great.
+Would like to swap it out for a proper Prime Number Theorem algorithm.
