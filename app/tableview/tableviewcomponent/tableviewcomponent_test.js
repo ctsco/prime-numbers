@@ -41,7 +41,6 @@ describe("tableviewcomponent_test.js", function () {
         });
 
         describe("contain an input field", function() {
-
             var INPUT_SELECTOR = ".UT-prime-count-input";
 
             it('should be present', function() {
@@ -52,11 +51,9 @@ describe("tableviewcomponent_test.js", function () {
                 element.find(INPUT_SELECTOR).val(100).trigger('input');
                 expect(elementControllerInstance.enteredPrimeCount).toBe('100');
             });
-
         });
 
         describe("contain a button to populate the table", function() {
-
             var BUTTON_SELECTOR = ".UT-populate-table";
 
             it('should be present', function() {
@@ -69,7 +66,45 @@ describe("tableviewcomponent_test.js", function () {
                 element.find(BUTTON_SELECTOR).click();
                 expect(elementControllerInstance.populateTable).toHaveBeenCalled();
             });
+        });
 
+        describe("contain a table of results", function() {
+            var PRIMES = [2, 3, 5];
+
+            beforeEach(function() {
+                elementControllerInstance.primes = PRIMES;
+            });
+
+            describe("with a table header", function() {
+                var HEADER_SELECTOR = ".UT-prime-header";
+
+                it('for each prime and a blank', function() {
+                    expect(element.find(HEADER_SELECTOR).length).toBe(4);
+                });
+
+                it('for a blank entry', function() {
+                    expect(element.find(HEADER_SELECTOR).get(0).text()).toBe("");
+                });
+
+                it('for each prime', function() {
+                    expect(element.find(HEADER_SELECTOR).get(1).text()).toBe("2");
+                    expect(element.find(HEADER_SELECTOR).get(2).text()).toBe("3");
+                    expect(element.find(HEADER_SELECTOR).get(3).text()).toBe("5");
+                });
+            });
+
+            describe("with a row for each prime", function() {
+                var ROW_SELECTOR = ".UT-prime-row";
+                var ROW_CELL_SELECTOR = ROW_SELECTOR + " td";
+
+                it('should be one for each prime', function() {
+                    expect(element.find(ROW_SELECTOR).length).toBe(3);
+                });
+
+                it('and the first column displays the prime number', function() {
+                    expect(element.find(ROW_CELL_SELECTOR).get(0).text()).toBe("");
+                });
+            });
         });
 
     });
