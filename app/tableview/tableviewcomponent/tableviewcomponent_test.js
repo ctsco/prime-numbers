@@ -73,6 +73,7 @@ describe("tableviewcomponent_test.js", function () {
 
             beforeEach(function() {
                 elementControllerInstance.primes = PRIMES;
+                $rootScope.$apply();
             });
 
             describe("with a table header", function() {
@@ -83,13 +84,13 @@ describe("tableviewcomponent_test.js", function () {
                 });
 
                 it('for a blank entry', function() {
-                    expect(element.find(HEADER_SELECTOR).get(0).text()).toBe("");
+                    expect(element.find(HEADER_SELECTOR).get(0).innerText).toBe("");
                 });
 
                 it('for each prime', function() {
-                    expect(element.find(HEADER_SELECTOR).get(1).text()).toBe("2");
-                    expect(element.find(HEADER_SELECTOR).get(2).text()).toBe("3");
-                    expect(element.find(HEADER_SELECTOR).get(3).text()).toBe("5");
+                    expect(element.find(HEADER_SELECTOR).get(1).innerText).toBe("2");
+                    expect(element.find(HEADER_SELECTOR).get(2).innerText).toBe("3");
+                    expect(element.find(HEADER_SELECTOR).get(3).innerText).toBe("5");
                 });
             });
 
@@ -102,7 +103,9 @@ describe("tableviewcomponent_test.js", function () {
                 });
 
                 it('and the first column displays the prime number', function() {
-                    expect(element.find(ROW_CELL_SELECTOR).get(0).text()).toBe("");
+                    expect(element.find(ROW_CELL_SELECTOR).get(0).innerText).toBe("2");
+                    expect(element.find(ROW_CELL_SELECTOR).get(1).innerText).toBe("3");
+                    expect(element.find(ROW_CELL_SELECTOR).get(2).innerText).toBe("5");
                 });
             });
         });
