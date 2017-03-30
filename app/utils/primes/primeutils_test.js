@@ -71,53 +71,47 @@ describe('primeutils_test.js', function () {
         describe("should return a number greater or equal to", function() {
 
             it('2, when n is 1', function() {
-                var result = PrimeUtils.approximateNthPrimeNumber(1);
-
-                expect(result).toBeTruthy();
-                expect(result).not.toBeLessThan(2);
+                assertNthPrimeNumber(1, 2);
             });
 
             it('3, when n is 2', function() {
-                var result = PrimeUtils.approximateNthPrimeNumber(2);
+                assertNthPrimeNumber(2, 3);
+            });
 
-                expect(result).toBeTruthy();
-                expect(result).not.toBeLessThan(3);
+            it('5, when n is 3', function() {
+                assertNthPrimeNumber(3, 5);
+            });
+
+            it('7, when n is 4', function() {
+                assertNthPrimeNumber(4, 7);
             });
 
             it('29, when n is 10', function() {
-                var result = PrimeUtils.approximateNthPrimeNumber(10);
-
-                expect(result).toBeTruthy();
-                expect(result).not.toBeLessThan(29);
+                assertNthPrimeNumber(10, 29);
             });
 
             it('71, when n is 20', function() {
-                var result = PrimeUtils.approximateNthPrimeNumber(20);
-
-                expect(result).toBeTruthy();
-                expect(result).not.toBeLessThan(71);
+                assertNthPrimeNumber(20, 71);
             });
 
             it('541, when n is 100', function() {
-                var result = PrimeUtils.approximateNthPrimeNumber(100);
-
-                expect(result).toBeTruthy();
-                expect(result).not.toBeLessThan(541);
+                assertNthPrimeNumber(100, 541);
             });
 
             it('7919, when n is 1000', function() {
-                var result = PrimeUtils.approximateNthPrimeNumber(1000);
-
-                expect(result).toBeTruthy();
-                expect(result).not.toBeLessThan(7919);
+                assertNthPrimeNumber(1000, 7919);
             });
 
             it('104729, when n is 10000', function() {
-                var result = PrimeUtils.approximateNthPrimeNumber(10000);
+                assertNthPrimeNumber(10000, 104729);
+            });
+
+            function assertNthPrimeNumber(nthNumber, actualPrime) {
+                var result = PrimeUtils.approximateNthPrimeNumber(nthNumber);
 
                 expect(result).toBeTruthy();
-                expect(result).not.toBeLessThan(104729);
-            });
+                expect(result).not.toBeLessThan(actualPrime);
+            }
         });
 
     });
