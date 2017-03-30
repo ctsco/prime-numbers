@@ -1,15 +1,21 @@
 <div class="tableview-component-container">
-    <input class="UT-prime-count-input" ng-model="$ctrl.enteredPrimeCount" />
-    <button class="UT-populate-table" ng-click="$ctrl.populateTable()"></button>
+    <div class="input-section">
+        <span>How many primes would you like to generate?</span>
+        <input class="UT-prime-count-input" ng-model="$ctrl.enteredPrimeCount" />
+    </div>
 
-    <table>
+    <div class="button-section">
+        <button class="UT-populate-table" ng-click="$ctrl.populateTable()">Make it happen!</button>
+    </div>
+
+    <table class="prime-table">
         <tr>
             <th class="UT-prime-header"></th>
             <th class="UT-prime-header" ng-repeat="prime in $ctrl.primes">{{::prime}}</th>
         </tr>
 
         <tr class="UT-prime-row" ng-repeat="row in $ctrl.primes">
-            <td>{{::row}}</td>
+            <td class="prime-number-column">{{::row}}</td>
             <td ng-repeat="column in $ctrl.primes">{{row | multiplication : column}}</td>
         </tr>
     </table>

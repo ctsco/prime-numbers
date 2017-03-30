@@ -1,25 +1,27 @@
 /* app css stylesheet */
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+h1 {
+  text-align: center;
 }
 
-.menu:before {
-  content: "[";
+.scored-out {
+  text-decoration: line-through;
 }
 
-.menu:after {
-  content: "]";
+.tableview-component-container {
+  text-align: center;
 }
 
-.menu > li {
-  display: inline;
+.prime-table .prime-number-column {
+  font-weight: bold;
 }
 
-.menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
+.prime-table {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prime-table td {
+  padding: 10px;
 }
