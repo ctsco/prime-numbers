@@ -106,6 +106,22 @@ describe('primeutils_test.js', function () {
                 assertNthPrimeNumber(10000, 104729);
             });
 
+            it('1299709, when n is 100000', function() {
+                assertNthPrimeNumber(100000, 1299709);
+            });
+
+            it('15485863, when n is 1000000', function() {
+                assertNthPrimeNumber(1000000, 15485863);
+            });
+
+            it('32452843, when n is 2000000', function() {
+                assertNthPrimeNumber(2000000, 32452843);
+            });
+
+            it('179424673, when n is 10000000', function() {
+                assertNthPrimeNumber(10000000, 179424673);
+            });
+
             function assertNthPrimeNumber(nthNumber, actualPrime) {
                 var result = PrimeUtils.approximateNthPrimeNumber(nthNumber);
 
