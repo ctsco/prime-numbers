@@ -74,4 +74,34 @@ describe("tableviewcomponent_test.js", function () {
 
     });
 
+    describe("populateTable()", function() {
+
+        var mockPrimeGenerator = {};
+        var MOCK_PRIME_COUNT = 123;
+        var MOCK_PRIME_NUMBERS = [100, 200, 300];
+
+        beforeEach(function() {
+            mockPrimeGenerator.generatePrimeNumbers
+                = jasmine.createSpy('generatePrimeNumbers').and.returnValue(MOCK_PRIME_NUMBERS);
+
+            initialiseComponent({PrimeGenerator: 'mockPrimeGenerator'});
+
+            component.enteredPrimeCount = MOCK_PRIME_COUNT;
+            component.populateTable();
+        });
+
+        describe("should call PrimeGenerator.generatePrimeNumbers", function() {
+
+            it('passing the enteredPrimeCount', function() {
+                expect(mockPrimeGenerator.generatePrimeNumbers).toHaveBeenCalledWith(MOCK_PRIME_COUNT);
+            });
+
+            it('and assign the response to controler.primes', function() {
+                expect(component.primes).toBe(MOCK_PRIME_NUMBERS);
+            });
+
+        });
+
+    });
+
 });
