@@ -65,4 +65,46 @@ describe('primeutils_test.js', function () {
         });
 
     });
+
+    describe("approximateNthPrimeNumber()", function() {
+
+        describe("should return a number greater or equal to", function() {
+
+            it('2, when n is 1', function() {
+                var result = PrimeUtils.approximateNthPrimeNumber(1);
+                expect(result).not.toBeLessThan(2);
+            });
+
+            it('3, when n is 2', function() {
+                var result = PrimeUtils.approximateNthPrimeNumber(2);
+                expect(result).not.toBeLessThan(3);
+            });
+
+            it('29, when n is 10', function() {
+                var result = PrimeUtils.approximateNthPrimeNumber(10);
+                expect(result).not.toBeLessThan(29);
+            });
+
+            it('71, when n is 20', function() {
+                var result = PrimeUtils.approximateNthPrimeNumber(20);
+                expect(result).not.toBeLessThan(71);
+            });
+
+            it('541, when n is 100', function() {
+                var result = PrimeUtils.approximateNthPrimeNumber(100);
+                expect(result).not.toBeLessThan(541);
+            });
+
+            it('7919, when n is 1000', function() {
+                var result = PrimeUtils.approximateNthPrimeNumber(1000);
+                expect(result).not.toBeLessThan(7919);
+            });
+
+            it('104729, when n is 10000', function() {
+                var result = PrimeUtils.approximateNthPrimeNumber(10000);
+                expect(result).not.toBeLessThan(104729);
+            });
+        });
+
+    });
 });

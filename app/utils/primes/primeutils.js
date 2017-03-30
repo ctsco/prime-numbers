@@ -12,4 +12,8 @@ angular.module('primetables.utils.primes', [
 
             return true;
         };
+
+        this.approximateNthPrimeNumber = function(n) {
+
+        }
     });
