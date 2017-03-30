@@ -26,7 +26,7 @@ describe("tableviewcomponent_test.js", function () {
 
     describe("The view should", function() {
 
-        var element;
+        var element, elementControllerInstance;
 
         beforeEach(function() {
             var parentScope = $rootScope.$new();
@@ -36,6 +36,8 @@ describe("tableviewcomponent_test.js", function () {
 
             $compile(element)(parentScope);
             parentScope.$digest();
+
+            elementControllerInstance = element.controller('tableView');
         });
 
         describe("contain an input field", function() {
@@ -44,6 +46,11 @@ describe("tableviewcomponent_test.js", function () {
 
             it('should be present', function() {
                 expect(element.find(INPUT_SELECTOR).length).toBe(1);
+            });
+
+            it('which should be bound to $ctrl.enteredPrimeCount', function() {
+                element.find(INPUT_SELECTOR).val(100).trigger('input');
+                expect(elementControllerInstance.enteredPrimeCount).toBe('100');
             });
 
         });
@@ -57,7 +64,6 @@ describe("tableviewcomponent_test.js", function () {
             });
 
             it('which should call the populateTable function when clicked', function() {
-                var elementControllerInstance = element.controller('tableView');
                 spyOn(elementControllerInstance, "populateTable");
 
                 element.find(BUTTON_SELECTOR).click();
