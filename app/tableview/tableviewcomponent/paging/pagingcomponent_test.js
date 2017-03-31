@@ -4,6 +4,7 @@ describe("pagingcomponent_test.js", function () {
 
     var ENABLE_PAGING = true;
     var SELECTED_VERTICAL_PAGE = 4;
+    var SELECTED_HORIZONTAL_PAGE = 2;
     var PAGES = [0, 1, 2, 3, 4];
 
     beforeEach(function () {
@@ -39,9 +40,12 @@ describe("pagingcomponent_test.js", function () {
             parentScope.enablePaging = ENABLE_PAGING;
             parentScope.pages = PAGES;
             parentScope.selectedVerticalPage = SELECTED_VERTICAL_PAGE;
+            parentScope.selectedHorizontalPage = SELECTED_HORIZONTAL_PAGE;
 
             element = angular.element(
-                '<paging enable-paging="enablePaging" pages="pages" selected-vertical-page="selectedVerticalPage"></paging>');
+                '<paging enable-paging="enablePaging" pages="pages"' +
+                'selected-vertical-page="selectedVerticalPage"' +
+                'selected-horizontal-page="selectedHorizontalPage"></paging>');
             initialiseComponent({$element: element});
 
             $compile(element)(parentScope);
@@ -92,12 +96,38 @@ describe("pagingcomponent_test.js", function () {
                 });
 
                 it('which should update parentScope using two way bindingwhen changed', function () {
-                    element.find(VERTICAL_PAGE_SELECT).val(2).trigger('change');
+                    element.find(VERTICAL_PAGE_SELECT).val('number:2').trigger('change');
                     expect(parentScope.selectedVerticalPage).toBe(2);
                 });
 
                 it('which should have the options bound to $ctrl.pages', function () {
                     var verticalSelect = element.find(VERTICAL_PAGE_SELECT);
+                    var options = angular.element(verticalSelect).find('option');
+
+                    expect(options.length).toBe(5);
+                });
+
+            });
+
+            describe("and a select box for the horizontal page", function () {
+
+                var HORIZONTAL_PAGE_SELECT = ".UT-horizontal-page-select";
+
+                it('should be displayed', function () {
+                    expect(element.find(HORIZONTAL_PAGE_SELECT).length).toBe(1);
+                });
+
+                it('which the selectedValue should be bound to $ctrl.selectedHorizontalPage', function () {
+                    expect(parentScope.selectedHorizontalPage).toBe(SELECTED_HORIZONTAL_PAGE);
+                });
+
+                it('which should update parentScope using two way bindingwhen changed', function () {
+                    element.find(HORIZONTAL_PAGE_SELECT).val('number:2').trigger('change');
+                    expect(parentScope.selectedHorizontalPage).toBe(2);
+                });
+
+                it('which should have the options bound to $ctrl.pages', function () {
+                    var verticalSelect = element.find(HORIZONTAL_PAGE_SELECT);
                     var options = angular.element(verticalSelect).find('option');
 
                     expect(options.length).toBe(5);
