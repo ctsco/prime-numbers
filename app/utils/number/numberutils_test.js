@@ -25,6 +25,10 @@ describe('numberutils_test.js', function () {
 
         describe("should return false for", function() {
 
+            it('undefined', function() {
+                expect(NumberUtils.isValidPositiveNumber(undefined)).toBe(false);
+            });
+
             it('zero', function() {
                 expect(NumberUtils.isValidPositiveNumber(0)).toBe(false);
             });
