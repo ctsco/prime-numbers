@@ -7,7 +7,7 @@ angular.module('primetables.utils.primes.generator', [
     .service("PrimeGenerator", function (PrimeUtils, ArrayUtils) {
         this.generatePrimeNumbers = function (count) {
 
-            if(count < 2) {
+            if(count < 1) {
                 return [];
             }
 

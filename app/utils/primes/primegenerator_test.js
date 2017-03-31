@@ -40,10 +40,12 @@ describe('primegenerator_test.js', function () {
 
             mockArrayUtils.setRecurringValue = jasmine.createSpy("setRecurringValue");
 
-            var COUNT = 10;
-            PrimeGenerator.generatePrimeNumbers(COUNT);
+            for(var count=1; count<10; count++) {
+                PrimeGenerator.generatePrimeNumbers(count);
 
-            expect(mockPrimeUtils.approximateNthPrimeNumber).toHaveBeenCalledWith(10);
+                expect(mockPrimeUtils.approximateNthPrimeNumber).toHaveBeenCalledWith(count);
+            }
+
         });
 
         describe("should keep iterating until prime count has been reached", function() {
