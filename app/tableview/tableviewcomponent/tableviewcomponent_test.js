@@ -68,6 +68,20 @@ describe("tableviewcomponent_test.js", function () {
             });
         });
 
+        describe("a validation message should", function() {
+            var VALIDATION_SELECTOR = ".UT-validation-message";
+
+            it('displayed when displayValidationMessage is true', function() {
+                elementControllerInstance.displayValidationMessage = true;
+                expect(element.find(VALIDATION_SELECTOR).length).toBe(1);
+            });
+
+            it('not displayed when displayValidationMessage is false', function() {
+                elementControllerInstance.displayValidationMessage = false;
+                expect(element.find(VALIDATION_SELECTOR).length).toBe(0);
+            });
+        });
+
     });
 
     describe("$onInit", function() {
