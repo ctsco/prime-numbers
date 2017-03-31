@@ -35,16 +35,6 @@ describe('arrayutils_test.js', function () {
                     ArrayUtils.setRecurringValue([], 1, 1, undefined, 1)
                 }).toThrow("increment cannot be undefined");
             });
-
-            it('should throw an error when endIndex is before startIndex', function () {
-                var START_INDEX = 2;
-                var END_INDEX = 1;
-
-                expect(function () {
-                    ArrayUtils.setRecurringValue([], START_INDEX, END_INDEX, 1, 1)
-                }).toThrow("endIndex cannot be before startIndex");
-            });
-
         });
 
         describe("should update the array passed into the function", function () {

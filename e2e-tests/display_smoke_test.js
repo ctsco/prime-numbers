@@ -18,9 +18,9 @@ describe('display_smoke_test', function() {
             });
 
             it('with a header for each prime', function() {
-                expect(tableViewPage.get.headerCellText(0)).toBe("2")
-                expect(tableViewPage.get.headerCellText(1)).toBe("3");
-                expect(tableViewPage.get.headerCellText(2)).toBe("5");
+                expect(tableViewPage.get.headerCellText(1)).toBe("2")
+                expect(tableViewPage.get.headerCellText(2)).toBe("3");
+                expect(tableViewPage.get.headerCellText(3)).toBe("5");
             });
 
             it('headers should be 1 more than primes, to account for the blank', function() {
@@ -74,11 +74,11 @@ describe('display_smoke_test', function() {
         });
 
         it('should update the table', function() {
-            expect(tableViewPage.get.headerCellText(0)).toBe("2")
-            expect(tableViewPage.get.headerCellText(1)).toBe("3");
-            expect(tableViewPage.get.headerCellText(2)).toBe("5");
-            expect(tableViewPage.get.headerCellText(3)).toBe("7");
-            expect(tableViewPage.get.headerCellText(4)).toBe("11");
+            expect(tableViewPage.get.headerCellText(1)).toBe("2")
+            expect(tableViewPage.get.headerCellText(2)).toBe("3");
+            expect(tableViewPage.get.headerCellText(3)).toBe("5");
+            expect(tableViewPage.get.headerCellText(4)).toBe("7");
+            expect(tableViewPage.get.headerCellText(5)).toBe("11");
         });
 
     });

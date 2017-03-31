@@ -1,11 +1,11 @@
 <div class="tableview-component-container">
     <div class="input-section">
         <span>How many primes would you like to generate?</span>
-        <input class="UT-prime-count-input" ng-model="$ctrl.enteredPrimeCount" />
+        <input class="UT-prime-count-input E2E-prime-count-input" ng-model="$ctrl.enteredPrimeCount" />
     </div>
 
     <div class="button-section">
-        <button class="UT-populate-table" ng-click="$ctrl.populateTable()">Make it happen!</button>
+        <button class="UT-populate-table E2E-populate-table" ng-click="$ctrl.populateTable()">Make it happen!</button>
     </div>
 
     <div class="debug-info" ng-show="$ctrl.primes">
@@ -20,13 +20,13 @@
 
     <table class="prime-table">
         <tr>
-            <th class="UT-prime-header"></th>
-            <th class="UT-prime-header" ng-repeat="prime in $ctrl.primes">{{::prime}}</th>
+            <th class="E2E-prime-header"></th>
+            <th class="E2E-prime-header" ng-repeat="prime in $ctrl.primes">{{::prime}}</th>
         </tr>
 
-        <tr class="UT-prime-row" ng-repeat="row in $ctrl.primes">
-            <td class="prime-number-column">{{::row}}</td>
-            <td ng-repeat="column in $ctrl.primes">{{row | multiplication : column}}</td>
+        <tr class="E2E-prime-row" ng-repeat="row in $ctrl.primes">
+            <td class="prime-number-column E2E-prime-cell">{{::row}}</td>
+            <td class="E2E-prime-cell" ng-repeat="column in $ctrl.primes">{{row | multiplication : column}}</td>
         </tr>
     </table>
 

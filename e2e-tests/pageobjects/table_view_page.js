@@ -2,7 +2,7 @@ var TableViewPage = function () {
 
     var ELEMENTS = {
         PRIME_COUNT_INPUT: element(By.css('.E2E-prime-count-input')),
-        GENERATE_PRIMES_BUTTON: element(By.css('.E2E-generate-primes-button')),
+        GENERATE_PRIMES_BUTTON: element(By.css('.E2E-populate-table')),
         HEADER_CELLS: element.all(By.css('.E2E-prime-header')),
         ROWS: element.all(By.css('.E2E-prime-row'))
     };
