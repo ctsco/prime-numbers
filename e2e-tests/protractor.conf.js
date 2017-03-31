@@ -17,6 +17,10 @@ exports.config = {
 
   jasmineNodeOpts: {
     defaultTimeoutInterval: 30000
+  },
+
+  onPrepare: function() {
+    return browser.driver.get(browser.baseUrl);
   }
 
 };
