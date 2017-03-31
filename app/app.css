@@ -38,3 +38,15 @@ h1 {
     flex-grow: 1;
     text-align: left;
 }
+
+.paging-component-container {
+    margin-top: 10px;
+}
+
+.paging-options > div {
+    display: inline-block;
+}
+
+.paging-options .vertical-paging {
+    margin-right: 10px;
+}

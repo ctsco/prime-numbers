@@ -18,15 +18,21 @@
         </div>
     </div>
 
+    <paging enable-paging="$ctrl.enablePaging" pages="$ctrl.pages"
+            selected-vertical-page="$ctrl.selectedVerticalPage"
+            selected-horizontal-page="$ctrl.selectedHorizontalPage"></paging>
+
     <table class="prime-table">
         <tr>
             <th class="E2E-prime-header"></th>
-            <th class="E2E-prime-header" ng-repeat="prime in $ctrl.primes">{{::prime}}</th>
+            <th class="E2E-prime-header"
+                ng-repeat="prime in $ctrl.primes | pagestart: $ctrl.getHorizontalPageStart() | limitTo: $ctrl.getPageSize()">{{::prime}}</th>
         </tr>
 
-        <tr class="E2E-prime-row" ng-repeat="row in $ctrl.primes">
+        <tr class="E2E-prime-row" ng-repeat="row in $ctrl.primes | pagestart: $ctrl.getVerticalPageStart() | limitTo: $ctrl.getPageSize()">
             <td class="prime-number-column E2E-prime-cell">{{::row}}</td>
-            <td class="E2E-prime-cell" ng-repeat="column in $ctrl.primes">{{row | multiplication : column}}</td>
+            <td class="E2E-prime-cell"
+                ng-repeat="column in $ctrl.primes | pagestart: $ctrl.getHorizontalPageStart() | limitTo: $ctrl.getPageSize()">{{row | multiplication : column}}</td>
         </tr>
     </table>
 

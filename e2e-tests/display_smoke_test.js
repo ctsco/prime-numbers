@@ -4,6 +4,10 @@ describe('display_smoke_test', function() {
 
     var tableViewPage = require("./pageobjects/table_view_page.js");
 
+    it('Setup - visit page', function() {
+        tableViewPage.action.visitPage();
+    });
+
     describe("Once the user has entered a valid prime count", function() {
 
         it('and clicked the button', function() {

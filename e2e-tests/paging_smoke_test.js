@@ -4,10 +4,14 @@ describe('paging_smoke_test', function() {
 
     var tableViewPage = require("./pageobjects/table_view_page.js");
 
+    it('Setup - visit page', function() {
+        tableViewPage.action.visitPage();
+    });
+
     describe("Once the user has entered a valid (large) prime count", function() {
 
         it('and clicked the button', function() {
-            tableViewPage.action.enterInput(100000);
+            tableViewPage.action.enterInput(10000);
             tableViewPage.action.clickGenerateButton();
         });
 
@@ -42,7 +46,7 @@ describe('paging_smoke_test', function() {
                 });
 
                 it('where the first column is the prime number', function() {
-                    expect(tableViewPage.get.rowCellText(0, 0)).toBe("2")
+                    expect(tableViewPage.get.rowCellText(0, 0)).toBe("2");
                     expect(tableViewPage.get.rowCellText(1, 0)).toBe("3");
                     expect(tableViewPage.get.rowCellText(2, 0)).toBe("5");
                     expect(tableViewPage.get.rowCellText(3, 0)).toBe("7");
@@ -57,7 +61,7 @@ describe('paging_smoke_test', function() {
 
                 describe('and each cell is a multiplication of the column prime value', function() {
                     it("for row 10", function() {
-                        expect(tableViewPage.get.rowCellText(9, 1)).toBe("58")
+                        expect(tableViewPage.get.rowCellText(9, 1)).toBe("58");
                         expect(tableViewPage.get.rowCellText(9, 2)).toBe("87");
                         expect(tableViewPage.get.rowCellText(9, 3)).toBe("145");
                         expect(tableViewPage.get.rowCellText(9, 4)).toBe("203")
@@ -74,23 +78,29 @@ describe('paging_smoke_test', function() {
 
             describe('10000 pages should be generated for', function() {
                 it('the vertical paging', function() {
-
+                    expect(tableViewPage.get.verticalOptionCount()).toBe(1000);
                 });
 
                 it('the horizontal paging', function() {
-
+                    expect(tableViewPage.get.horizontalOptionCount()).toBe(1000);
                 });
             });
 
             describe("Changing the vertical page should", function() {
                 it('update the vertical rows', function() {
+                    tableViewPage.action.setVerticalPage(1);
 
+                    expect(tableViewPage.get.rowCellText(0, 0)).toBe("31");
+                    expect(tableViewPage.get.rowCellText(1, 0)).toBe("37");
                 });
             });
 
             describe("Changing the horizontal page should", function() {
                 it('update the horizontal rows', function() {
+                    tableViewPage.action.setHorizontalPage(2);
 
+                    expect(tableViewPage.get.headerCellText(1)).toBe("73");
+                    expect(tableViewPage.get.headerCellText(2)).toBe("79");
                 });
             });
 
@@ -107,15 +117,12 @@ describe('paging_smoke_test', function() {
         });
 
         it('should update the vertical page count', function() {
+            expect(tableViewPage.get.verticalOptionCount()).toBe(3);
         });
 
         it('should update the horizontal page count', function() {
+            expect(tableViewPage.get.horizontalOptionCount()).toBe(3);
         });
-
-        it('should reset the pages to 0', function() {
-
-        });
-
     });
 
 });

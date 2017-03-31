@@ -80,13 +80,13 @@ describe("tableviewcomponent_test.js", function () {
             expect(component.pages).toEqual([0]);
         });
 
-        it('should set the initial vertical page to 0', function() {
-            expect(component.verticalPage).toBe(0);
+        it('should set the initial selectedVerticalPage to 0', function() {
+            expect(component.selectedVerticalPage).toBe(0);
         });
 
-        it('should set the initial horizontal page to 0', function() {
-            expect(component.verticalPage).toBe(0);
-        })
+        it('should set the initial selectedHorizontalPage to 0', function() {
+            expect(component.selectedHorizontalPage).toBe(0);
+        });
 
         it('should set the pageSize to 10', function() {
             expect(component.pageSize).toBe(10);
@@ -114,6 +114,9 @@ describe("tableviewcomponent_test.js", function () {
                 = jasmine.createSpy('generatePrimeNumbers').and.returnValue(mockPrimeNumbers);
 
             initialiseComponent({PrimeGenerator: mockPrimeGenerator});
+
+            component.selectedVerticalPage = 100;
+            component.selectedHorizontalPage = 100;
 
             component.enteredPrimeCount = MOCK_PRIME_COUNT;
             component.populateTable();
@@ -145,6 +148,14 @@ describe("tableviewcomponent_test.js", function () {
                 }
             })
 
+        });
+
+        it('should set the selectedVerticalPage to 0', function() {
+            expect(component.selectedVerticalPage).toBe(0);
+        });
+
+        it('should set the selectedHorizontalPage to 0', function() {
+            expect(component.selectedHorizontalPage).toBe(0);
         });
 
     });

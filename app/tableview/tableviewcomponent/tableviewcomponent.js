@@ -24,8 +24,8 @@ function TableViewComponentController(PrimeGenerator, TableViewConstants) {
 
     ctrl.$onInit = function() {
         ctrl.pages = [0];
-        ctrl.verticalPage = 0;
-        ctrl.horizontalPage = 0;
+        ctrl.selectedVerticalPage = 0;
+        ctrl.selectedHorizontalPage = 0;
         ctrl.pageSize = TableViewConstants.PAGE_SIZE;
         ctrl.enablePaging = true;
     };
@@ -38,6 +38,9 @@ function TableViewComponentController(PrimeGenerator, TableViewConstants) {
         ctrl.primes = PrimeGenerator.generatePrimeNumbers(ctrl.enteredPrimeCount);
 
         ctrl.timeTaken = new Date().getTime() - start.getTime();
+
+        ctrl.selectedVerticalPage = 0;
+        ctrl.selectedHorizontalPage = 0;
 
         setPageCount();
         setLastPrime();
