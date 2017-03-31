@@ -73,11 +73,13 @@ describe("tableviewcomponent_test.js", function () {
 
             it('displayed when displayValidationMessage is true', function() {
                 elementControllerInstance.displayValidationMessage = true;
+                $rootScope.$apply();
                 expect(element.find(VALIDATION_SELECTOR).length).toBe(1);
             });
 
             it('not displayed when displayValidationMessage is false', function() {
                 elementControllerInstance.displayValidationMessage = false;
+                $rootScope.$apply();
                 expect(element.find(VALIDATION_SELECTOR).length).toBe(0);
             });
         });

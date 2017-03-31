@@ -4,6 +4,10 @@
         <input class="UT-prime-count-input E2E-prime-count-input" ng-model="$ctrl.enteredPrimeCount" />
     </div>
 
+    <div class="UT-validation-message" ng-if="$ctrl.displayValidationMessage">
+        Please enter a valid number
+    </div>
+
     <div class="button-section">
         <button class="UT-populate-table E2E-populate-table" ng-click="$ctrl.populateTable()">Make it happen!</button>
     </div>
