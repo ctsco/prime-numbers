@@ -1,9 +1,15 @@
 <div class="paging-component-container">
     <div>Use Paging to display?<input class="UT-enable-paging" type="checkbox" ng-model="$ctrl.enablePaging" ></input></div>
     <div class="UT-paging-options paging-options" ng-if="$ctrl.enablePaging">
-        <div>
+        <div class="vertical-paging">
             Vertical Page
             <select class="UT-vertical-page-select" ng-model="$ctrl.selectedVerticalPage" ng-options="page for page in $ctrl.pages"></select>
         </div>
+
+        <div class="horizontal-paging">
+            Horizontal Page
+            <select class="UT-horizontal-page-select" ng-model="$ctrl.selectedHorizontalPage" ng-options="page for page in $ctrl.pages"></select>
+        </div>
     </div>
+
 </div>
