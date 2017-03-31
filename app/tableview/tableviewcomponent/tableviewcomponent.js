@@ -60,7 +60,15 @@ function TableViewComponentController(PrimeGenerator, TableViewConstants) {
     };
 
     ctrl.getPageSize = function() {
+        if(ctrl.enablePaging) {
+            return ctrl.pageSize;
+        }
 
+        if(ctrl.primes) {
+            return ctrl.primes.length;
+        }
+
+        return 0;
     };
 
     function setPageCount() {

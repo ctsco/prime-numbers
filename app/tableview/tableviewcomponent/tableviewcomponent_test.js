@@ -261,13 +261,17 @@ describe("tableviewcomponent_test.js", function () {
 
         describe('when enablePaging is false', function() {
 
+            beforeEach(function() {
+                component.enablePaging = false;
+            });
+
             it('and primes are defined, the prime count should be returned', function() {
                 component.primes = [0, 1, 2, 3];
                 expect(component.getPageSize()).toBe(4);
             });
 
             it('and primes are undefined, 0 should be returned', function() {
-                component.primes = undefined
+                component.primes = undefined;
                 expect(component.getPageSize()).toBe(0);
             });
 
