@@ -52,7 +52,11 @@ function TableViewComponentController(PrimeGenerator, TableViewConstants) {
     };
 
     ctrl.getHorizontalPageStart = function() {
+        if(ctrl.enablePaging) {
+            return ctrl.selectedHorizontalPage * ctrl.pageSize;
+        }
 
+        return 0;
     };
 
     function setPageCount() {
