@@ -1,4 +1,4 @@
-describe("multiplicationfilter_test.js", function () {
+describe("pagestartfilter_test.js", function () {
 
     beforeEach(module('primetables.filters.pagestart'));
 
@@ -8,7 +8,7 @@ describe("multiplicationfilter_test.js", function () {
         filter = $injector.get('$filter')('pagestart');
     }));
 
-    describe("pagestart filter should", function() {
+    describe("When array is defined, pagestart filter should", function() {
 
         var arrayMock;
         var SLICE_INDEX = 100;
@@ -29,6 +29,20 @@ describe("multiplicationfilter_test.js", function () {
 
         it("return the sliced result", function() {
             expect(result).toBe(MOCK_RETURN);
+        });
+
+    });
+
+    describe("When array is not defined, pagestart filter should", function() {
+
+        var result;
+
+        beforeEach(function() {
+            result = filter(undefined, 1);
+        });
+
+        it("return undefined", function() {
+            expect(result).toBe(undefined);
         });
 
     });
