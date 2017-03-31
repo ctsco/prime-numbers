@@ -153,6 +153,7 @@ describe("tableviewcomponent_test.js", function () {
 
         beforeEach(function() {
             initialiseComponent();
+            component.$onInit();
         });
 
         describe("When enablePaging is true", function() {
@@ -191,6 +192,55 @@ describe("tableviewcomponent_test.js", function () {
             it('the result should be 0', function() {
                 component.selectedVerticalPage = 100;
                 expect(component.getVerticalPageStart()).toBe(0);
+            });
+
+        });
+
+    });
+
+    describe("getHorizontalPageStart()", function() {
+
+        beforeEach(function() {
+            initialiseComponent();
+            component.$onInit();
+        });
+
+        describe("When enablePaging is true", function() {
+
+            beforeEach(function() {
+                component.enablePaging = true;
+            });
+
+            describe('the result should be selectedHorizontalPage * pageSize', function() {
+
+                it('e.g. when selectedHorizontalPage is 0, result should be 0', function() {
+                    component.selectedHorizontalPage = 0;
+                    expect(component.getHorizontalPageStart()).toBe(0);
+                });
+
+                it('e.g. when selectedHorizontalPage is 5, result should be 50', function() {
+                    component.selectedHorizontalPage = 5;
+                    expect(component.getHorizontalPageStart()).toBe(50);
+                });
+
+                it('e.g. when selectedHorizontalPage is 100, result should be 1000', function() {
+                    component.selectedHorizontalPage = 100;
+                    expect(component.getHorizontalPageStart()).toBe(1000);
+                });
+
+            });
+
+        });
+
+        describe("When enablePaging is false", function() {
+
+            beforeEach(function() {
+                component.enablePaging = false;
+            });
+
+            it('the result should be 0', function() {
+                component.selectedHorizontalPage = 100;
+                expect(component.getHorizontalPageStart()).toBe(0);
             });
 
         });

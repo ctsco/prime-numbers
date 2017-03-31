@@ -44,6 +44,14 @@ function TableViewComponentController(PrimeGenerator, TableViewConstants) {
     };
 
     ctrl.getVerticalPageStart = function() {
+        if(ctrl.enablePaging) {
+            return ctrl.selectedVerticalPage * ctrl.pageSize;
+        }
+
+        return 0;
+    };
+
+    ctrl.getHorizontalPageStart = function() {
 
     };
 
