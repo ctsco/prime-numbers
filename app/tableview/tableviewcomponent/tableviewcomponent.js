@@ -3,6 +3,7 @@
 angular.module('primetables.tableview.component',
     [
         'primetables.utils.primes.generator',
+        'primetables.utils.number',
         'primetables.tableview.component.paging',
         'primetables.filters.multiplication',
         'primetables.filters.pagestart'
@@ -18,7 +19,7 @@ angular.module('primetables.tableview.component',
         PAGE_SIZE: 10
     });
 
-function TableViewComponentController(PrimeGenerator, TableViewConstants) {
+function TableViewComponentController(PrimeGenerator, TableViewConstants, NumberUtils) {
 
     var ctrl = this;
 

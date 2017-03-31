@@ -100,6 +100,7 @@ describe("tableviewcomponent_test.js", function () {
     describe("populateTable()", function() {
 
         var mockPrimeGenerator = {};
+        var mockNumberUtils = {};
         var MOCK_PRIME_COUNT = 123;
         var mockPrimeNumbers = [];
 
@@ -113,49 +114,74 @@ describe("tableviewcomponent_test.js", function () {
             mockPrimeGenerator.generatePrimeNumbers
                 = jasmine.createSpy('generatePrimeNumbers').and.returnValue(mockPrimeNumbers);
 
-            initialiseComponent({PrimeGenerator: mockPrimeGenerator});
+            initialiseComponent({PrimeGenerator: mockPrimeGenerator, NumberUtils: mockNumberUtils});
+
+            mockNumberUtils.isValidPositiveNumber = jasmine.createSpy('isValidPositiveNumber')
 
             component.selectedVerticalPage = 100;
             component.selectedHorizontalPage = 100;
 
             component.enteredPrimeCount = MOCK_PRIME_COUNT;
+        });
+
+        it('should ensure NumberUtils.isValidPositiveNumber is called, passing the user input', function() {
             component.populateTable();
+            expect(mockNumberUtils.isValidPositiveNumber).toHaveBeenCalledWith(MOCK_PRIME_COUNT);
         });
 
-        describe("should call PrimeGenerator.generatePrimeNumbers", function() {
+        describe("When the user input is a valid number", function() {
 
-            it('passing the enteredPrimeCount', function() {
-                expect(mockPrimeGenerator.generatePrimeNumbers).toHaveBeenCalledWith(MOCK_PRIME_COUNT);
+            beforeEach(function() {
+                mockNumberUtils.isValidPositiveNumber.and.returnValue(true);
+                component.populateTable();
             });
 
-            it('and assign the response to controller.primes', function() {
-                expect(component.primes).toBe(mockPrimeNumbers);
+            describe("should call PrimeGenerator.generatePrimeNumbers", function() {
+
+                it('passing the enteredPrimeCount', function() {
+                    expect(mockPrimeGenerator.generatePrimeNumbers).toHaveBeenCalledWith(MOCK_PRIME_COUNT);
+                });
+
+                it('and assign the response to controller.primes', function() {
+                    expect(component.primes).toBe(mockPrimeNumbers);
+                });
+
+                it('and assign the last prime number to controller.lastPrime', function() {
+                    expect(component.lastPrime).toBe(122);
+                });
+
+                it('and calculate the pageCount', function() {
+                    expect(component.pageCount).toBe(13);
+                });
+
+                it('and populate a page array containing a number for each page', function() {
+                    expect(component.pages.length).toBe(13);
+
+                    for(var x=0; x<component.pages.length; x++) {
+                        expect(component.pages[x]).toBe(x);
+                    }
+                })
+
             });
 
-            it('and assign the last prime number to controller.lastPrime', function() {
-                expect(component.lastPrime).toBe(122);
+            it('should set the selectedVerticalPage to 0', function() {
+                expect(component.selectedVerticalPage).toBe(0);
             });
 
-            it('and calculate the pageCount', function() {
-                expect(component.pageCount).toBe(13);
+            it('should set the selectedHorizontalPage to 0', function() {
+                expect(component.selectedHorizontalPage).toBe(0);
             });
-
-            it('and populate a page array containing a number for each page', function() {
-                expect(component.pages.length).toBe(13);
-
-                for(var x=0; x<component.pages.length; x++) {
-                    expect(component.pages[x]).toBe(x);
-                }
-            })
-
         });
 
-        it('should set the selectedVerticalPage to 0', function() {
-            expect(component.selectedVerticalPage).toBe(0);
-        });
+        describe("When the user input is not a valid number", function() {
+            beforeEach(function() {
+                mockNumberUtils.isValidPositiveNumber.and.returnValue(false);
+                component.populateTable();
+            });
 
-        it('should set the selectedHorizontalPage to 0', function() {
-            expect(component.selectedHorizontalPage).toBe(0);
+            it('it should not call mockPrimeGenerator.generatePrimeNumbers', function() {
+                expect(mockPrimeGenerator.generatePrimeNumbers).not.toHaveBeenCalled();
+            });
         });
 
     });
