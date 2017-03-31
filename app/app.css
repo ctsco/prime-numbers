@@ -50,3 +50,7 @@ h1 {
 .paging-options .vertical-paging {
     margin-right: 10px;
 }
+
+.validation-message {
+    color: red;
+}
