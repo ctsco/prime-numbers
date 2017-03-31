@@ -37,10 +37,12 @@ This will then launch a Chrome browser, and execute the end-to-end UI based test
 # What I'm pleased with
 **The paging functionality.** Not only would it have been difficult to see the prime multiplication table when there were
 more than a few hundred on the screen, rendering performance would have been terrible - especially considering the prime generation
-feels quite quick (well, quick to me anyway!).
+feels quite quick (well, quick to me anyway!).  
+If you do want to turn it off (so the whole grid is displayed), just untick the 'Use Paging to display' checkbox and the
+view will update.  It may take some time, but that is mainly rendering.
 
 **The design.** The algorithm itself should be easily tweakable, and any util functions have all been split out
-incase they need reuse.  The UI paging component should be re-usable too.
+so they can be easily reused.  The UI paging component should be re-usable too.
 
 # What I'd do If I had more time...
 **Improve the accuracy of the PrimeUtils.approximateNthPrimeNumber algorithm.**
@@ -48,5 +50,5 @@ This is designed to aid the sieve so it knows how far to 'sieve out' data.  Curr
 Would like to swap it out for a proper Prime Number Theorem algorithm.
 
 **Improve the table and paging layout.**
-It's very bland.  I'm sure given a bit more time I could make the paging a bit more user friendly!  All UTs and E2E
+It's very bland.  I'm sure given a bit more time I could make the paging a bit more user friendly (perhaps with an optional page size)!  All UTs and E2E
 tests have their own classes applied to the elements, so an html re-shuffle wouldn't affect tests.
