@@ -2,12 +2,16 @@ describe("pagingcomponent_test.js", function () {
 
     var component, $componentController, $rootScope, $compile;
 
-    beforeEach(function() {
+    var ENABLE_PAGING = true;
+    var SELECTED_VERTICAL_PAGE = 4;
+    var PAGES = [0, 1, 2, 3, 4];
+
+    beforeEach(function () {
         module('templates');
         module('primetables.tableview.component.paging');
     });
 
-    beforeEach(inject(function (_$rootScope_, _$compile_,  _$componentController_) {
+    beforeEach(inject(function (_$rootScope_, _$compile_, _$componentController_) {
         $rootScope = _$rootScope_;
         $compile = _$compile_;
         $componentController = _$componentController_;
@@ -24,17 +28,20 @@ describe("pagingcomponent_test.js", function () {
         });
     });
 
-    describe("The view should", function() {
+    describe("The view should", function () {
 
         var element, elementControllerInstance;
         var parentScope;
 
-        beforeEach(function() {
+        beforeEach(function () {
             parentScope = $rootScope.$new();
 
-            parentScope.enablePaging = true;
+            parentScope.enablePaging = ENABLE_PAGING;
+            parentScope.pages = PAGES;
+            parentScope.selectedVerticalPage = SELECTED_VERTICAL_PAGE;
 
-            element = angular.element('<paging enable-paging="enablePaging"></paging>');
+            element = angular.element(
+                '<paging enable-paging="enablePaging" pages="pages" selected-vertical-page="selectedVerticalPage"></paging>');
             initialiseComponent({$element: element});
 
             $compile(element)(parentScope);
@@ -43,22 +50,74 @@ describe("pagingcomponent_test.js", function () {
             elementControllerInstance = element.controller('paging');
         });
 
-        describe("contain an checkbox", function() {
+        describe("contain an checkbox", function () {
             var INPUT_SELECTOR = ".UT-enable-paging";
 
-            it('should be present', function() {
+            it('should be present', function () {
                 expect(element.find(INPUT_SELECTOR).length).toBe(1);
             });
 
-            it('which should be bound to $ctrl.enablePaging', function() {
+            it('which should be bound to $ctrl.enablePaging', function () {
                 expect(parentScope.enablePaging).toBe(true);
             });
 
-            it('which should update parentScope using two way bindingwhen changed', function() {
+            it('which should update parentScope using two way bindingwhen changed', function () {
                 element.find(INPUT_SELECTOR).click();
                 expect(parentScope.enablePaging).toBe(false);
             });
         });
+
+        describe("contain some paging options", function () {
+            var PAGING_OPTIONS = ".UT-paging-options";
+
+            beforeEach(function () {
+                parentScope.enablePaging = true;
+                parentScope.$apply();
+            });
+
+            it('when enablePaging is true', function () {
+                expect(element.find(PAGING_OPTIONS).length).toBe(1);
+            });
+
+            describe("and a select box for the vertical page", function () {
+
+                var VERTICAL_PAGE_SELECT = ".UT-vertical-page-select";
+
+                it('should be displayed', function () {
+                    expect(element.find(VERTICAL_PAGE_SELECT).length).toBe(1);
+                });
+
+                it('which the selectedValue should be bound to $ctrl.selectedVerticalPage', function () {
+                    expect(parentScope.selectedVerticalPage).toBe(SELECTED_VERTICAL_PAGE);
+                });
+
+                it('which should update parentScope using two way bindingwhen changed', function () {
+                    element.find(VERTICAL_PAGE_SELECT).val(2).trigger('change');
+                    expect(parentScope.selectedVerticalPage).toBe(2);
+                });
+
+                it('which should have the options bound to $ctrl.pages', function () {
+                    var verticalSelect = element.find(VERTICAL_PAGE_SELECT);
+                    var options = angular.element(verticalSelect).find('option');
+
+                    expect(options.length).toBe(5);
+                });
+
+            });
+        });
+
+        describe("not contain some paging options", function () {
+            var PAGING_OPTIONS = ".UT-paging-options";
+
+            beforeEach(function () {
+                parentScope.enablePaging = false;
+                parentScope.$apply();
+            });
+
+            it('when enablePaging is false', function () {
+                expect(element.find(PAGING_OPTIONS).length).toBe(0);
+            });
+        })
 
     });
 
