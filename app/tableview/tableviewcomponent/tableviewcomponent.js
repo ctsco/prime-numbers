@@ -59,6 +59,10 @@ function TableViewComponentController(PrimeGenerator, TableViewConstants) {
         return 0;
     };
 
+    ctrl.getPageSize = function() {
+
+    };
+
     function setPageCount() {
         ctrl.pageCount = ctrl.primes.length / TableViewConstants.PAGE_SIZE;
         ctrl.pageCount = Math.ceil(ctrl.pageCount);

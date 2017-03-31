@@ -246,4 +246,32 @@ describe("tableviewcomponent_test.js", function () {
         });
 
     });
+
+    describe("getPageSize()", function() {
+
+        beforeEach(function() {
+            initialiseComponent();
+            component.$onInit();
+        });
+
+        it('when enablePaging is true, 10 should be returned', function() {
+            component.enablePaging = true;
+            expect(component.getPageSize()).toBe(10);
+        });
+
+        describe('when enablePaging is false', function() {
+
+            it('and primes are defined, the prime count should be returned', function() {
+                component.primes = [0, 1, 2, 3];
+                expect(component.getPageSize()).toBe(4);
+            });
+
+            it('and primes are undefined, 0 should be returned', function() {
+                component.primes = undefined
+                expect(component.getPageSize()).toBe(0);
+            });
+
+        });
+
+    });
 });
