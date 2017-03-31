@@ -3,7 +3,9 @@
 angular.module('primetables.tableview.component',
     [
         'primetables.utils.primes.generator',
-        'primetables.filters.multiplication'
+        'primetables.tableview.component.paging',
+        'primetables.filters.multiplication',
+        'primetables.filters.pagestart'
     ]
 )
 
@@ -39,6 +41,10 @@ function TableViewComponentController(PrimeGenerator, TableViewConstants) {
 
         setPageCount();
         setLastPrime();
+    };
+
+    ctrl.getVerticalPageStart = function() {
+
     };
 
     function setPageCount() {

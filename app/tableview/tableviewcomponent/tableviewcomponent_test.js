@@ -149,4 +149,51 @@ describe("tableviewcomponent_test.js", function () {
 
     });
 
+    describe("getVerticalPageStart()", function() {
+
+        beforeEach(function() {
+            initialiseComponent();
+        });
+
+        describe("When enablePaging is true", function() {
+
+            beforeEach(function() {
+                component.enablePaging = true;
+            });
+
+            describe('the result should be selectedVerticalPage * pageSize', function() {
+
+                it('e.g. when selectedVerticalPage is 0, result should be 0', function() {
+                    component.selectedVerticalPage = 0;
+                    expect(component.getVerticalPageStart()).toBe(0);
+                });
+
+                it('e.g. when selectedVerticalPage is 5, result should be 50', function() {
+                    component.selectedVerticalPage = 5;
+                    expect(component.getVerticalPageStart()).toBe(50);
+                });
+
+                it('e.g. when selectedVerticalPage is 100, result should be 1000', function() {
+                    component.selectedVerticalPage = 100;
+                    expect(component.getVerticalPageStart()).toBe(1000);
+                });
+
+            });
+
+        });
+
+        describe("When enablePaging is false", function() {
+
+            beforeEach(function() {
+                component.enablePaging = false;
+            });
+
+            it('the result should be 0', function() {
+                component.selectedVerticalPage = 100;
+                expect(component.getVerticalPageStart()).toBe(0);
+            });
+
+        });
+
+    });
 });
