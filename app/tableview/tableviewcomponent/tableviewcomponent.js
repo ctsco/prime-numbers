@@ -29,9 +29,15 @@ function TableViewComponentController(PrimeGenerator, TableViewConstants, Number
         ctrl.selectedHorizontalPage = 0;
         ctrl.pageSize = TableViewConstants.PAGE_SIZE;
         ctrl.enablePaging = true;
+        ctrl.displayValidationMessage = false;
     };
 
     ctrl.populateTable = function () {
+        if(!NumberUtils.isValidPositiveNumber(ctrl.enteredPrimeCount)) {
+            ctrl.displayValidationMessage = true;
+            return;
+        }
+
         ctrl.timeTaken = undefined;
 
         var start = new Date();
@@ -40,11 +46,9 @@ function TableViewComponentController(PrimeGenerator, TableViewConstants, Number
 
         ctrl.timeTaken = new Date().getTime() - start.getTime();
 
-        ctrl.selectedVerticalPage = 0;
-        ctrl.selectedHorizontalPage = 0;
-
         setPageCount();
         setLastPrime();
+        resetDisplayVariables();
     };
 
     ctrl.getVerticalPageStart = function() {
@@ -90,4 +94,9 @@ function TableViewComponentController(PrimeGenerator, TableViewConstants, Number
         ctrl.lastPrime = ctrl.primes[ctrl.primes.length - 1];
     }
 
+    function resetDisplayVariables() {
+        ctrl.selectedVerticalPage = 0;
+        ctrl.selectedHorizontalPage = 0;
+        ctrl.displayValidationMessage = false;
+    }
 }

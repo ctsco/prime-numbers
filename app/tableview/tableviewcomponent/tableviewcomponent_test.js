@@ -95,6 +95,10 @@ describe("tableviewcomponent_test.js", function () {
         it('should enablePaging by default', function() {
             expect(component.enablePaging).toBe(true);
         });
+
+        it('should set displayValidationMessage to false by default', function() {
+            expect(component.displayValidationMessage).toBe(false);
+        });
     });
 
     describe("populateTable()", function() {
@@ -171,6 +175,10 @@ describe("tableviewcomponent_test.js", function () {
             it('should set the selectedHorizontalPage to 0', function() {
                 expect(component.selectedHorizontalPage).toBe(0);
             });
+
+            it('should set displayValidationMessage to false', function() {
+                expect(component.displayValidationMessage).toBe(false);
+            });
         });
 
         describe("When the user input is not a valid number", function() {
@@ -181,6 +189,10 @@ describe("tableviewcomponent_test.js", function () {
 
             it('it should not call mockPrimeGenerator.generatePrimeNumbers', function() {
                 expect(mockPrimeGenerator.generatePrimeNumbers).not.toHaveBeenCalled();
+            });
+
+            it('should set displayValidationMessage to true', function() {
+                expect(component.displayValidationMessage).toBe(true);
             });
         });
 
